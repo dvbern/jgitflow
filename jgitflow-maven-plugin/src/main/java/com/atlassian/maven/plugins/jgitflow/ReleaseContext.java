@@ -1,13 +1,13 @@
 package com.atlassian.maven.plugins.jgitflow;
 
+import java.io.File;
+
 import com.atlassian.jgitflow.core.InitContext;
 import com.atlassian.maven.jgitflow.api.MavenHotfixFinishExtension;
 import com.atlassian.maven.jgitflow.api.MavenHotfixStartExtension;
 import com.atlassian.maven.jgitflow.api.MavenReleaseFinishExtension;
 import com.atlassian.maven.jgitflow.api.MavenReleaseStartExtension;
 import com.google.common.base.Strings;
-
-import java.io.File;
 
 /**
  * @since version
@@ -50,8 +50,7 @@ public class ReleaseContext
     private String defaultOriginUrl;
     private String scmCommentPrefix;
     private String scmCommentSuffix;
-    private String username;
-    private String password;
+    private Credentials credentials;
     private boolean alwaysUpdateOrigin;
     private boolean consistentProjectVersions;
     private MavenReleaseStartExtension releaseStartExtension;
@@ -96,8 +95,7 @@ public class ReleaseContext
         this.scmCommentSuffix = "";
         this.pullMaster = false;
         this.pullDevelop = false;
-        this.username = "";
-        this.password = "";
+        this.credentials = null;
         this.alwaysUpdateOrigin = true;
         this.consistentProjectVersions = false;
         this.releaseStartExtension = null;
@@ -513,25 +511,12 @@ public class ReleaseContext
         return pullDevelop;
     }
 
-    public String getUsername()
-    {
-        return username;
+    public Credentials getCredentials() {
+        return credentials;
     }
 
-    public ReleaseContext setUsername(String username)
-    {
-        this.username = username;
-        return this;
-    }
-
-    public String getPassword()
-    {
-        return password;
-    }
-
-    public ReleaseContext setPassword(String password)
-    {
-        this.password = password;
+    public ReleaseContext setCredentials(Credentials credentials) {
+        this.credentials = credentials;
         return this;
     }
 
@@ -594,7 +579,7 @@ public class ReleaseContext
         this.eol = eol;
         return this;
     }
-    
+
     public MavenHotfixStartExtension getHotfixStartExtension()
     {
         return hotfixStartExtension;

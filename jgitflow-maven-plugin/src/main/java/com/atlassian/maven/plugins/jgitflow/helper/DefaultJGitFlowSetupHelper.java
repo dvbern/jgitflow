@@ -5,6 +5,7 @@ import java.io.IOException;
 import com.atlassian.jgitflow.core.JGitFlow;
 import com.atlassian.jgitflow.core.JGitFlowReporter;
 import com.atlassian.jgitflow.core.exception.JGitFlowException;
+import com.atlassian.maven.plugins.jgitflow.Credentials;
 import com.atlassian.maven.plugins.jgitflow.PrettyPrompter;
 import com.atlassian.maven.plugins.jgitflow.ReleaseContext;
 import com.atlassian.maven.plugins.jgitflow.exception.MavenJGitFlowException;
@@ -12,9 +13,7 @@ import com.atlassian.maven.plugins.jgitflow.provider.ContextProvider;
 import com.atlassian.maven.plugins.jgitflow.provider.JGitFlowProvider;
 import com.atlassian.maven.plugins.jgitflow.util.ConsoleCredentialsProvider;
 import com.atlassian.maven.plugins.jgitflow.util.SshCredentialsProvider;
-
 import com.google.common.base.Strings;
-
 import org.apache.maven.execution.RuntimeInformation;
 import org.codehaus.plexus.component.annotations.Component;
 import org.codehaus.plexus.component.annotations.Requirement;
@@ -194,11 +193,13 @@ public class DefaultJGitFlowSetupHelper extends AbstractLogEnabled implements JG
     private boolean setupUserPasswordCredentialsProvider() throws JGitFlowException
     {
         ReleaseContext ctx = contextProvider.getContext();
-        
-        if (!Strings.isNullOrEmpty(ctx.getPassword()) && !Strings.isNullOrEmpty(ctx.getUsername()))
+
+        // if (!Strings.isNullOrEmpty(ctx.getPassword()) && !Strings.isNullOrEmpty(ctx.getUsername()))
+        if (ctx.getCredentials() != null)
         {
             JGitFlowReporter.get().debugText(getClass().getSimpleName(), "using provided username and password");
-            CredentialsProvider.setDefault(new UsernamePasswordCredentialsProvider(ctx.getUsername(), ctx.getPassword()));
+            Credentials creds = ctx.getCredentials();
+            CredentialsProvider.setDefault(new UsernamePasswordCredentialsProvider(creds.getUsername(), creds.getPassword()));
         }
         else if (null != System.console())
         {
@@ -213,7 +214,7 @@ public class DefaultJGitFlowSetupHelper extends AbstractLogEnabled implements JG
     private boolean setupSshCredentialsProvider() throws JGitFlowException
     {
         ReleaseContext ctx = contextProvider.getContext();
-        
+
         if (ctx.isEnableSshAgent())
         {
             JGitFlowReporter.get().debugText(getClass().getSimpleName(), "installing ssh-agent credentials provider");

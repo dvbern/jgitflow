@@ -8,10 +8,14 @@ import java.net.URLClassLoader;
 import java.util.*;
 
 import com.atlassian.maven.jgitflow.api.MavenJGitFlowExtension;
+import com.atlassian.maven.plugins.jgitflow.Credentials;
 import com.atlassian.maven.plugins.jgitflow.FlowInitContext;
 
+import com.atlassian.maven.plugins.jgitflow.ServerCredentials;
+import com.atlassian.maven.plugins.jgitflow.UsernamePasswordCredentials;
 import com.google.common.base.Strings;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.maven.artifact.DependencyResolutionRequiredException;
 import org.apache.maven.execution.MavenSession;
 import org.apache.maven.plugin.AbstractMojo;
@@ -43,7 +47,7 @@ public abstract class AbstractJGitFlowMojo extends AbstractMojo
 
     /**
      * This parameter permits you to configure branch and tag names, as shown in the following example:
-     * 
+     *
      * <pre>
      * &lt;flowInitContext&gt;
      *   &lt;masterBranchName&gt;master&lt;/masterBranchName&gt;
@@ -54,7 +58,7 @@ public abstract class AbstractJGitFlowMojo extends AbstractMojo
      *   &lt;versionTagPrefix&gt;stable-&lt;/versionTagPrefix&gt;
      * &lt;/flowInitContext&gt;
      * </pre>
-     * 
+     *
      */
     @Parameter(defaultValue = "${flowInitContext}")
     private FlowInitContext flowInitContext;
@@ -116,6 +120,12 @@ public abstract class AbstractJGitFlowMojo extends AbstractMojo
     protected String scmCommentSuffix = "";
 
     /**
+     * The serverId (from settings.xml) to use when authenticating against the git server.
+     */
+    @Parameter(property = "serverId", defaultValue = "")
+    protected String serverId = "";
+
+    /**
      * The username to use when using user/pass authentication
      */
     @Parameter(property = "username", defaultValue = "")
@@ -149,7 +159,7 @@ public abstract class AbstractJGitFlowMojo extends AbstractMojo
     /**
      * This can be used to force the type of line ending used when rewriting poms.
      * If not set, blank or has an invalid value, the eol will be looked up from core.eol
-     * 
+     *
      * Valid values are: native, lf, crlf
      */
     @Parameter(defaultValue = "", property = "eol")
@@ -269,5 +279,20 @@ public abstract class AbstractJGitFlowMojo extends AbstractMojo
         {
             throw new MojoExecutionException("Dependencies must be resolved", e);
         }
+    }
+
+    protected Credentials parseCredentials(String serverId, String username, String password) {
+        if (StringUtils.trimToNull(serverId) != null) {
+            return ServerCredentials.parseSettings(serverId, settings);
+        }
+
+        String trimmedName = StringUtils.trimToNull(username);
+        String trimmedPass = StringUtils.trimToNull(password);
+
+        if (trimmedName != null || trimmedPass != null) {
+            return new UsernamePasswordCredentials(username, password);
+        }
+
+        return null;
     }
 }

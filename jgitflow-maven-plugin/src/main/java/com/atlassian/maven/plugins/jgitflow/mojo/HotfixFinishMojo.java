@@ -69,7 +69,7 @@ public class HotfixFinishMojo extends AbstractJGitFlowMojo
     private boolean noHotfixBuild = false;
 
     /**
-     * Whether to use the release profile that adds sources and javadocs to the released artifact, if appropriate. 
+     * Whether to use the release profile that adds sources and javadocs to the released artifact, if appropriate.
      * If set to true, the plugin sets the property "performRelease" to true, which activates the profile "release-profile", which is inherited from the super pom.
      */
     @Parameter(defaultValue = "true", property = "useReleaseProfile")
@@ -151,13 +151,12 @@ public class HotfixFinishMojo extends AbstractJGitFlowMojo
            .setDefaultOriginUrl(defaultOriginUrl)
            .setScmCommentPrefix(scmCommentPrefix)
            .setScmCommentSuffix(scmCommentSuffix)
-           .setUsername(username)
-           .setPassword(password)
+           .setCredentials(parseCredentials(serverId, username, password))
            .setPullMaster(pullMaster)
            .setPullDevelop(pullDevelop)
            .setArgs(arguments)
            .setGoals(goals)
-                .setEol(eol)
+           .setEol(eol)
            .setHotfixFinishExtension(extensionObject)
            .setFlowInitContext(getFlowInitContext().getJGitFlowContext())
            .setConsistentProjectVersions(consistentProjectVersions);

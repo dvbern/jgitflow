@@ -51,9 +51,8 @@ public class FeatureDeployMojo extends AbstractJGitFlowMojo
            .setDefaultOriginUrl(defaultOriginUrl)
            .setAllowRemote(isRemoteAllowed())
            .setEnableSshAgent(enableSshAgent)
-           .setUsername(username)
-           .setPassword(password)
-                .setEol(eol)
+           .setCredentials(parseCredentials(serverId, username, password))
+           .setEol(eol)
            .setUseReleaseProfile(false)
            .setFlowInitContext(getFlowInitContext().getJGitFlowContext());
 

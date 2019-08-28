@@ -3,7 +3,6 @@ package com.atlassian.maven.plugins.jgitflow.mojo;
 import com.atlassian.maven.plugins.jgitflow.ReleaseContext;
 import com.atlassian.maven.plugins.jgitflow.exception.MavenJGitFlowException;
 import com.atlassian.maven.plugins.jgitflow.manager.FlowReleaseManager;
-
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
 import org.apache.maven.plugins.annotations.Component;
@@ -64,9 +63,8 @@ public class FeatureStartMojo extends AbstractJGitFlowMojo
            .setScmCommentPrefix(scmCommentPrefix)
            .setScmCommentSuffix(scmCommentSuffix)
            .setUseReleaseProfile(false)
-           .setUsername(username)
-           .setPassword(password)
-                .setEol(eol)
+           .setCredentials(parseCredentials(serverId, username, password))
+           .setEol(eol)
            .setFlowInitContext(getFlowInitContext().getJGitFlowContext());
 
         try
@@ -78,4 +76,5 @@ public class FeatureStartMojo extends AbstractJGitFlowMojo
             throw new MojoExecutionException("Error starting feature: " + e.getMessage(), e);
         }
     }
+
 }

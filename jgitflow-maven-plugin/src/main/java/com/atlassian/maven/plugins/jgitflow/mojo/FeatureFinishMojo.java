@@ -78,7 +78,7 @@ public class FeatureFinishMojo extends AbstractJGitFlowMojo
      */
     @Parameter(defaultValue = "false", property = "consistentProjectVersions")
     protected boolean consistentProjectVersions = false;
-    
+
     @Component(hint = "feature")
     FlowReleaseManager releaseManager;
 
@@ -105,12 +105,11 @@ public class FeatureFinishMojo extends AbstractJGitFlowMojo
            .setDefaultOriginUrl(defaultOriginUrl)
            .setScmCommentPrefix(scmCommentPrefix)
            .setScmCommentSuffix(scmCommentSuffix)
-           .setUsername(username)
-           .setPassword(password)
+           .setCredentials(parseCredentials(serverId, username, password))
            .setPullMaster(pullMaster)
            .setPullDevelop(pullDevelop)
            .setUseReleaseProfile(false)
-                .setEol(eol)
+           .setEol(eol)
            .setConsistentProjectVersions(consistentProjectVersions)
            .setFlowInitContext(getFlowInitContext().getJGitFlowContext());
 

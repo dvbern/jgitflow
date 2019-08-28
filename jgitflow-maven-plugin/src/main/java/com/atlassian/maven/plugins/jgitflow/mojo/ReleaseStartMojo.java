@@ -68,7 +68,7 @@ public class ReleaseStartMojo extends AbstractJGitFlowMojo
     /**
      * A FQCN of a compatible release start extension.
      * Extensions are used to run custom code at various points in the jgitflow lifecycle.
-     * 
+     *
      * More documentation on using extensions will be available in the future
      */
     @Parameter(defaultValue = "")
@@ -102,10 +102,9 @@ public class ReleaseStartMojo extends AbstractJGitFlowMojo
            .setPullDevelop(pullDevelop)
            .setScmCommentPrefix(scmCommentPrefix)
            .setScmCommentSuffix(scmCommentSuffix)
-           .setUsername(username)
-           .setPassword(password)
+           .setCredentials(parseCredentials(serverId, username, password))
            .setReleaseStartExtension(extensionObject)
-                .setEol(eol)
+           .setEol(eol)
            .setFlowInitContext(getFlowInitContext().getJGitFlowContext());
 
         try

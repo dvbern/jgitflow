@@ -53,7 +53,7 @@ public class BuildNumberMojo extends AbstractJGitFlowMojo
 
     @Component
     protected JGitFlowProvider jGitFlowProvider;
-    
+
     @Component
     protected ProjectHelper projectHelper;
 
@@ -131,8 +131,7 @@ public class BuildNumberMojo extends AbstractJGitFlowMojo
                 .setDefaultOriginUrl(defaultOriginUrl)
                 .setEnableSshAgent(enableSshAgent)
                 .setUseReleaseProfile(false)
-                .setUsername(username)
-                .setPassword(password)
+                .setCredentials(parseCredentials(serverId, username, password))
                 .setEol(eol)
                 .setAllowRemote(isRemoteAllowed()));
         sessionProvider.setSession(session);

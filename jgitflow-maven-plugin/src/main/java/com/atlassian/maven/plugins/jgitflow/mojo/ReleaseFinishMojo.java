@@ -69,7 +69,7 @@ public class ReleaseFinishMojo extends AbstractJGitFlowMojo
     private boolean noReleaseMerge = false;
 
     /**
-     * Whether to use the release profile that adds sources and javadocs to the released artifact, if appropriate. 
+     * Whether to use the release profile that adds sources and javadocs to the released artifact, if appropriate.
      * If set to true, the plugin sets the property "performRelease" to true, which activates the profile "release-profile", which is inherited from the super pom.
      */
     @Parameter(defaultValue = "true", property = "useReleaseProfile")
@@ -83,7 +83,7 @@ public class ReleaseFinishMojo extends AbstractJGitFlowMojo
 
     /**
      * Commit message to use when tagging the release.
-     * 
+     *
      * If not set, the default message is "tagging release ${version}".
      */
     @Parameter(property = "tagMessage", defaultValue = "")
@@ -158,15 +158,14 @@ public class ReleaseFinishMojo extends AbstractJGitFlowMojo
            .setDefaultOriginUrl(defaultOriginUrl)
            .setScmCommentPrefix(scmCommentPrefix)
            .setScmCommentSuffix(scmCommentSuffix)
-           .setUsername(username)
-           .setPassword(password)
+           .setCredentials(parseCredentials(serverId, username, password))
            .setPullMaster(pullMaster)
            .setPullDevelop(pullDevelop)
            .setArgs(arguments)
            .setGoals(goals)
            .setReleaseFinishExtension(extensionObject)
            .setFlowInitContext(getFlowInitContext().getJGitFlowContext())
-                .setEol(eol)
+           .setEol(eol)
            .setConsistentProjectVersions(consistentProjectVersions);
 
         try
