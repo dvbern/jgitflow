@@ -399,6 +399,7 @@
         <slf4j.version>1.7.7</slf4j.version>
         <skipUnits>${skipTests}</skipUnits>
         <jgitflowPluginVersion>1.0-m5</jgitflowPluginVersion>
+        <maven-deploy-plugin.deployAtEnd>false</maven-deploy-plugin.deployAtEnd>
     </properties>
 </project>
 
