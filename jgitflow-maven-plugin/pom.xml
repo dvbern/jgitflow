@@ -2,7 +2,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>external.atlassian.jgitflow</groupId>
+        <groupId>ch.dvbern.oss.maven.jgitflow</groupId>
         <artifactId>jgitflow-parent</artifactId>
         <version>1.0-m6-SNAPSHOT</version>
     </parent>
@@ -19,12 +19,12 @@
 
     <dependencies>
         <dependency>
-            <groupId>external.atlassian.jgitflow</groupId>
+            <groupId>ch.dvbern.oss.maven.jgitflow</groupId>
             <artifactId>jgit-flow-core</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>external.atlassian.jgitflow</groupId>
+            <groupId>ch.dvbern.oss.maven.jgitflow</groupId>
             <artifactId>jgitflow-maven-api</artifactId>
             <version>${project.version}</version>
         </dependency>

@@ -2,12 +2,12 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>org.sonatype.oss</groupId>
-        <artifactId>oss-parent</artifactId>
-        <version>7</version>
+        <groupId>ch.dvbern.oss.maven</groupId>
+        <artifactId>parent</artifactId>
+        <version>1.2.1</version>
     </parent>
 
-    <groupId>external.atlassian.jgitflow</groupId>
+    <groupId>ch.dvbern.oss.maven.jgitflow</groupId>
     <artifactId>jgitflow-parent</artifactId>
     <version>1.0-m6-SNAPSHOT</version>
 
@@ -27,11 +27,21 @@
     </licenses>
 
     <organization>
-        <name>Atlassian</name>
-        <url>http://www.atlassian.com/</url>
+        <name>DV Bern AG</name>
+        <url>https://www.dvbern.ch/</url>
     </organization>
 
     <developers>
+        <developer>
+            <name>Céline Benoit</name>
+            <email>celine.benoit@dvbern.ch</email>
+            <organization>DV Bern AG</organization>
+        </developer>
+        <developer>
+            <name>Christoph Linder</name>
+            <email>christoph.linder@dvbern.ch</email>
+            <organization>DV Bern AG</organization>
+        </developer>
         <developer>
             <name>Jonathan Doklovic</name>
             <organization>Atlassian</organization>
@@ -39,14 +49,10 @@
         </developer>
     </developers>
 
-    <prerequisites>
-        <maven>${maven.version}</maven>
-    </prerequisites>
-
     <scm>
-        <connection>scm:git:ssh://git@bitbucket.org/atlassian/jgit-flow.git</connection>
-        <developerConnection>scm:git:ssh://git@bitbucket.org/atlassian/jgit-flow.git</developerConnection>
-        <url>https://bitbucket.org/atlassian/jgit-flow</url>
+        <connection>scm:git:https://github.com/dvbern/jgitflow.git</connection>
+        <developerConnection>scm:git:https://github.com/dvbern/jgitflow.git</developerConnection>
+        <url>https://github.com/dvbern/jgitflow</url>
         <tag>HEAD</tag>
     </scm>
 
@@ -250,7 +256,7 @@
                 </configuration>
             </plugin>
             <plugin>
-                <groupId>external.atlassian.jgitflow</groupId>
+                <groupId>ch.dvbern.oss.maven.jgitflow</groupId>
                 <artifactId>jgitflow-maven-plugin</artifactId>
                 <version>${jgitflowPluginVersion}</version>
                 <inherited>false</inherited>

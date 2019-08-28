@@ -5,7 +5,7 @@ If you're new to git-flow, or never heard of it, see:
 
 * ["original blog post"](http://nvie.com/git-model)
 * [why-arent-you-using-git-flow](http://jeffkreeftmeijer.com/2010/why-arent-you-using-git-flow/)
-  
+
 For more in-depth information about git flow and how git flow can help your business, [check out our git flow guide.](http://www.atlassian.com/git/workflows#!workflow-gitflow)
 
 #[[##]]# Features
@@ -29,11 +29,11 @@ The Maven JGit-Flow Plugin is hosted in the maven central repository and can be 
 <build>
     <plugins>
         <plugin>
-            <groupId>external.atlassian.jgitflow</groupId>
+            <groupId>ch.dvbern.oss.maven.jgitflow</groupId>
             <artifactId>jgitflow-maven-plugin</artifactId>
             <version>${project.version}</version>
             <configuration>
-                <!-- For specific plugin configuration options, 
+                <!-- For specific plugin configuration options,
                 see the Goals documentation page -->
             </configuration>
         </plugin>
