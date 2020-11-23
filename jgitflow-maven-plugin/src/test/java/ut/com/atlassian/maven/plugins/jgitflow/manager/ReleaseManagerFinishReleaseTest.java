@@ -270,7 +270,7 @@ public class ReleaseManagerFinishReleaseTest extends AbstractFlowManagerTest
         assertOnMaster(flow);
         initialCommitAll(flow);
 
-        Ref masterRef = flow.git().getRepository().getRef("HEAD");
+        Ref masterRef = flow.git().getRepository().findRef("HEAD");
         flow.git().checkout().setName(flow.getDevelopBranchName()).call();
         assertOnDevelop(flow);
 

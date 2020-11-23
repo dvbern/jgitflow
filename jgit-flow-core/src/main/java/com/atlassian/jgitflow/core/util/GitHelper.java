@@ -77,7 +77,7 @@ public class GitHelper
         {
             if (null != walk)
             {
-                walk.release();
+                walk.close();
             }
         }
     }
@@ -162,7 +162,7 @@ public class GitHelper
         {
             if (null != walk)
             {
-                walk.release();
+                walk.close();
             }
         }
     }
@@ -268,10 +268,8 @@ public class GitHelper
     public static boolean localBranchBehindRemote(Git git, final String branch) throws JGitFlowIOException
     {
         JGitFlowReporter reporter = JGitFlowReporter.get();
-        final RevWalk walk = new RevWalk(git.getRepository());
-        walk.setRetainBody(true);
         boolean behind = false;
-        try
+        try(final RevWalk walk = new RevWalk(git.getRepository()))
         {
             Ref remote = getRemoteBranch(git, branch);
             Ref local = getLocalBranch(git, branch);
@@ -312,10 +310,6 @@ public class GitHelper
             reporter.endMethod();
             reporter.flush();
             throw new JGitFlowIOException(e);
-        }
-        finally
-        {
-            walk.release();
         }
 
         return behind;
@@ -372,7 +366,7 @@ public class GitHelper
     {
         try
         {
-            Ref ref2check = git.getRepository().getRef(branchName);
+            Ref ref2check = git.getRepository().findRef(branchName);
             Ref local = null;
             if (ref2check != null && ref2check.getName().startsWith(Constants.R_HEADS))
             {

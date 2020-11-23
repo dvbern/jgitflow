@@ -42,7 +42,7 @@ public class HotfixFinishTest extends BaseGitFlowTest
         assertEquals(flow.getDevelopBranchName(), git.getRepository().getBranch());
 
         //release branch should be gone
-        Ref ref2check = git.getRepository().getRef(flow.getHotfixBranchPrefix() + "1.0");
+        Ref ref2check = git.getRepository().findRef(flow.getHotfixBranchPrefix() + "1.0");
         assertNull(ref2check);
 
     }
@@ -149,7 +149,7 @@ public class HotfixFinishTest extends BaseGitFlowTest
         assertEquals(flow.getDevelopBranchName(), git.getRepository().getBranch());
 
         //release branch should be gone
-        Ref ref2check = git.getRepository().getRef(flow.getHotfixBranchPrefix() + "1.0");
+        Ref ref2check = git.getRepository().findRef(flow.getHotfixBranchPrefix() + "1.0");
         assertNull(ref2check);
 
         //the develop branch should have our commit
@@ -199,7 +199,7 @@ public class HotfixFinishTest extends BaseGitFlowTest
         assertEquals(flow.getDevelopBranchName(), git.getRepository().getBranch());
 
         //hotfix branch should be gone
-        Ref ref2check = git.getRepository().getRef(flow.getHotfixBranchPrefix() + "1.0.1");
+        Ref ref2check = git.getRepository().findRef(flow.getHotfixBranchPrefix() + "1.0.1");
         assertNull(ref2check);
 
         //the develop branch should have our commit
@@ -239,7 +239,7 @@ public class HotfixFinishTest extends BaseGitFlowTest
         assertEquals(flow.getDevelopBranchName(), git.getRepository().getBranch());
 
         //release branch should still exist
-        Ref ref2check = git.getRepository().getRef(flow.getHotfixBranchPrefix() + "1.0");
+        Ref ref2check = git.getRepository().findRef(flow.getHotfixBranchPrefix() + "1.0");
         assertNotNull(ref2check);
     }
 
@@ -275,7 +275,7 @@ public class HotfixFinishTest extends BaseGitFlowTest
         assertEquals(flow.getDevelopBranchName(), git.getRepository().getBranch());
 
         //release branch should be gone
-        Ref ref2check = git.getRepository().getRef(flow.getHotfixBranchPrefix() + "1.0");
+        Ref ref2check = git.getRepository().findRef(flow.getHotfixBranchPrefix() + "1.0");
         assertNull(ref2check);
 
         //the develop branch should have both of our commits now

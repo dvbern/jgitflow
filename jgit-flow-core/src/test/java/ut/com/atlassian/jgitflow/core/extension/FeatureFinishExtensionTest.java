@@ -57,7 +57,7 @@ public class FeatureFinishExtensionTest extends BaseGitFlowTest
         assertEquals(flow.getDevelopBranchName(), git.getRepository().getBranch());
 
         //feature branch should be gone
-        Ref ref2check = git.getRepository().getRef(flow.getFeatureBranchPrefix() + MY_FEATURE);
+        Ref ref2check = git.getRepository().findRef(flow.getFeatureBranchPrefix() + MY_FEATURE);
         assertNull(ref2check);
 
         assertTrue("before was not called", extension.wasCalled(BaseExtensionForTests.BEFORE));
@@ -147,7 +147,7 @@ public class FeatureFinishExtensionTest extends BaseGitFlowTest
         assertEquals(flow.getDevelopBranchName(), git.getRepository().getBranch());
 
         //feature branch should be gone
-        Ref ref2check = git.getRepository().getRef(flow.getFeatureBranchPrefix() + MY_FEATURE);
+        Ref ref2check = git.getRepository().findRef(flow.getFeatureBranchPrefix() + MY_FEATURE);
         assertNull(ref2check);
 
         assertTrue("before was not called", extension.wasCalled(BaseExtensionForTests.BEFORE));

@@ -46,7 +46,7 @@ public class ReleaseFinishTest extends BaseGitFlowTest
         assertEquals(flow.getDevelopBranchName(), git.getRepository().getBranch());
 
         //release branch should be gone
-        Ref ref2check = git.getRepository().getRef(flow.getReleaseBranchPrefix() + "1.0");
+        Ref ref2check = git.getRepository().findRef(flow.getReleaseBranchPrefix() + "1.0");
         assertNull(ref2check);
 
     }
@@ -115,7 +115,7 @@ public class ReleaseFinishTest extends BaseGitFlowTest
         assertEquals(flow.getDevelopBranchName(), git.getRepository().getBranch());
 
         //release branch should be gone
-        Ref ref2check = git.getRepository().getRef(flow.getReleaseBranchPrefix() + "1.0");
+        Ref ref2check = git.getRepository().findRef(flow.getReleaseBranchPrefix() + "1.0");
         assertNull(ref2check);
 
         //the develop branch should have our commit
@@ -158,7 +158,7 @@ public class ReleaseFinishTest extends BaseGitFlowTest
         assertEquals(flow.getDevelopBranchName(), git.getRepository().getBranch());
 
         //release branch should be gone
-        Ref ref2check = git.getRepository().getRef(flow.getReleaseBranchPrefix() + "1.0");
+        Ref ref2check = git.getRepository().findRef(flow.getReleaseBranchPrefix() + "1.0");
         assertNull(ref2check);
 
         //the develop branch should have NOT our commit
@@ -188,7 +188,7 @@ public class ReleaseFinishTest extends BaseGitFlowTest
         assertEquals(flow.getDevelopBranchName(), git.getRepository().getBranch());
 
         //release branch should still exist
-        Ref ref2check = git.getRepository().getRef(flow.getReleaseBranchPrefix() + "1.0");
+        Ref ref2check = git.getRepository().findRef(flow.getReleaseBranchPrefix() + "1.0");
         assertNotNull(ref2check);
     }
 
@@ -226,7 +226,7 @@ public class ReleaseFinishTest extends BaseGitFlowTest
         assertEquals(flow.getDevelopBranchName(), git.getRepository().getBranch());
 
         //release branch should be gone
-        Ref ref2check = git.getRepository().getRef(flow.getReleaseBranchPrefix() + "1.0");
+        Ref ref2check = git.getRepository().findRef(flow.getReleaseBranchPrefix() + "1.0");
         assertNull(ref2check);
 
         //the develop branch should have both of our commits now
@@ -272,7 +272,7 @@ public class ReleaseFinishTest extends BaseGitFlowTest
         assertEquals(flow.getDevelopBranchName(), git.getRepository().getBranch());
 
         //release branch should be gone
-        Ref ref2check = git.getRepository().getRef(flow.getReleaseBranchPrefix() + "1.0");
+        Ref ref2check = git.getRepository().findRef(flow.getReleaseBranchPrefix() + "1.0");
         assertNull(ref2check);
 
         //the develop branch should NOT have both of our commits now
@@ -433,7 +433,7 @@ public class ReleaseFinishTest extends BaseGitFlowTest
         //make sure release has the hotfix commit
         flow.git().checkout().setName(flow.getReleaseBranchPrefix() + "2.0").call();
         assertTrue(GitHelper.isMergedInto(flow.git(), commit, flow.getReleaseBranchPrefix() + "2.0"));
-        
+
         //finish the release
         ReleaseMergeResult result = flow.releaseFinish("2.0").call();
 
@@ -443,7 +443,7 @@ public class ReleaseFinishTest extends BaseGitFlowTest
         assertEquals(flow.getDevelopBranchName(), git.getRepository().getBranch());
 
         //release branch should be gone
-        Ref ref2check = git.getRepository().getRef(flow.getReleaseBranchPrefix() + "2.0");
+        Ref ref2check = git.getRepository().findRef(flow.getReleaseBranchPrefix() + "2.0");
         assertNull(ref2check);
 
     }

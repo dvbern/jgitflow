@@ -44,7 +44,7 @@ public class FeatureFinishTest extends BaseGitFlowTest
         assertEquals(flow.getDevelopBranchName(), git.getRepository().getBranch());
 
         //feature branch should be gone
-        Ref ref2check = git.getRepository().getRef(flow.getFeatureBranchPrefix() + "my-feature");
+        Ref ref2check = git.getRepository().findRef(flow.getFeatureBranchPrefix() + "my-feature");
         assertNull(ref2check);
 
     }
@@ -109,7 +109,7 @@ public class FeatureFinishTest extends BaseGitFlowTest
         assertEquals(flow.getDevelopBranchName(), git.getRepository().getBranch());
 
         //feature branch should be gone
-        Ref ref2check = git.getRepository().getRef(flow.getFeatureBranchPrefix() + "my-feature");
+        Ref ref2check = git.getRepository().findRef(flow.getFeatureBranchPrefix() + "my-feature");
         assertNull(ref2check);
 
         //the develop branch should have our commit
@@ -168,7 +168,7 @@ public class FeatureFinishTest extends BaseGitFlowTest
         assertEquals(flow.getDevelopBranchName(), git.getRepository().getBranch());
 
         //feature branch should still exist
-        Ref ref2check = git.getRepository().getRef(flow.getFeatureBranchPrefix() + "my-feature");
+        Ref ref2check = git.getRepository().findRef(flow.getFeatureBranchPrefix() + "my-feature");
         assertNotNull(ref2check);
     }
 
@@ -204,7 +204,7 @@ public class FeatureFinishTest extends BaseGitFlowTest
         assertEquals(flow.getDevelopBranchName(), git.getRepository().getBranch());
 
         //feature branch should be gone
-        Ref ref2check = git.getRepository().getRef(flow.getFeatureBranchPrefix() + "my-feature");
+        Ref ref2check = git.getRepository().findRef(flow.getFeatureBranchPrefix() + "my-feature");
         assertNull(ref2check);
 
         //the develop branch should have both of our commits now
@@ -244,7 +244,7 @@ public class FeatureFinishTest extends BaseGitFlowTest
         assertEquals(flow.getDevelopBranchName(), git.getRepository().getBranch());
 
         //feature branch should be gone
-        Ref ref2check = git.getRepository().getRef(flow.getFeatureBranchPrefix() + "my-feature");
+        Ref ref2check = git.getRepository().findRef(flow.getFeatureBranchPrefix() + "my-feature");
         assertNull(ref2check);
 
         //the develop branch should NOT have both of our commits now
@@ -404,7 +404,7 @@ public class FeatureFinishTest extends BaseGitFlowTest
         assertEquals(flow.getDevelopBranchName(), git.getRepository().getBranch());
 
         //feature branch should be gone
-        Ref ref2check = git.getRepository().getRef(flow.getFeatureBranchPrefix() + "my-feature");
+        Ref ref2check = git.getRepository().findRef(flow.getFeatureBranchPrefix() + "my-feature");
         assertNull(ref2check);
 
         File gitFlowDir2 = new File(git.getRepository().getDirectory(), JGitFlowConstants.GITFLOW_DIR);
