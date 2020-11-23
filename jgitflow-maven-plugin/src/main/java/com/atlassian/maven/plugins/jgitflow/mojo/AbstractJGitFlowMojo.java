@@ -94,8 +94,8 @@ public abstract class AbstractJGitFlowMojo extends AbstractMojo
     /**
      * Whether to turn off all operations access the remote git repository.
      * This will still allow network access to download dependencies and such.
-     * <br />
-     * <br />
+     * <br>
+     * <br>
      * NOTE: THIS IS NOT CURRENTLY IMPLEMENTED!
      */
     @Parameter(property = "localOnly", defaultValue = "false")
