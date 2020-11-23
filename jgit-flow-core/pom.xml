@@ -4,7 +4,7 @@
     <parent>
         <groupId>ch.dvbern.oss.maven.jgitflow</groupId>
         <artifactId>jgitflow-parent</artifactId>
-        <version>1.0-m8</version>
+        <version>1.0-m9</version>
     </parent>
 
     <artifactId>jgit-flow-core</artifactId>
