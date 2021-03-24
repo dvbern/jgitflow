@@ -243,8 +243,91 @@
                     <argLine>-Xmx1024m</argLine>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-project-info-reports-plugin</artifactId>
+                <version>3.1.1</version>
+                <configuration>
+                    <reportSets>
+                        <reportSet>
+                            <reports><!-- select reports -->
+                                <report>index</report>
+                            </reports>
+                        </reportSet>
+                    </reportSets>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>ch.dvbern.oss.maven.jgitflow</groupId>
+                <artifactId>jgitflow-maven-plugin</artifactId>
+                <version>${jgitflowPluginVersion}</version>
+                <inherited>false</inherited>
+                <configuration>
+                    <allowSnapshots>true</allowSnapshots>
+                    <enableFeatureVersions>true</enableFeatureVersions>
+                    <pushFeatures>true</pushFeatures>
+                    <pushReleases>true</pushReleases>
+                    <autoVersionSubmodules>true</autoVersionSubmodules>
+                    <defaultOriginUrl>git@bitbucket.org:atlassian/jgit-flow.git</defaultOriginUrl>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+            <!-- Temporary workaround for jira.codehaus.org/browse/MPLUGIN-244 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.2.0</version>
+                <configuration>
+                    <additionalparam>-Xdoclint:none</additionalparam>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-site-plugin</artifactId>
+                <inherited>false</inherited>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
+
+    <profiles>
+        <profile>
+            <id>releaseBranchPrefix-sign-artifacts</id>
+            <activation>
+                <property>
+                    <name>performRelease</name>
+                    <value>true</value>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>1.6</version>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 
     <properties>
         <maven.version>2.2.1</maven.version>
@@ -263,6 +346,7 @@
         <maven-artifact.version>2.2.1</maven-artifact.version>
         <slf4j.version>1.7.9</slf4j.version>
         <skipUnits>${skipTests}</skipUnits>
+        <jgitflowPluginVersion>1.0-m7</jgitflowPluginVersion>
         <maven-deploy-plugin.deployAtEnd>false</maven-deploy-plugin.deployAtEnd>
     </properties>
 </project>
