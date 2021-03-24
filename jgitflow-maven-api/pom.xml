@@ -3,7 +3,7 @@
     <parent>
         <artifactId>jgitflow-parent</artifactId>
         <groupId>ch.dvbern.oss.maven.jgitflow</groupId>
-        <version>1.0-m7</version>
+        <version>1.0-m8</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
