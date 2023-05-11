@@ -58,7 +58,7 @@ public class UpdateCurrentBranchWithHotfixVersionsCommand implements ExtensionCo
             List<MavenProject> hotfixProjects = branchHelper.getProjectsForTopicBranch(BranchType.HOTFIX);
 
             pomUpdater.copyPomVersionsFromProject(hotfixProjects, currentProjects);
-            projectHelper.commitAllPoms(git, currentProjects, ctx.getScmCommentPrefix() + "Updating " + currentName + " poms to hotfix version to avoid merge conflicts" + ctx.getScmCommentSuffix());
+            projectHelper.commitAllPoms(git, currentProjects, ctx.getScmCommentPrefix() + "updating " + currentName + " poms to hotfix version to avoid merge conflicts" + ctx.getScmCommentSuffix());
         }
         catch (Exception e)
         {
