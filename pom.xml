@@ -339,7 +339,7 @@
         <jline.version>1.0</jline.version>
         <gson.version>2.10.1</gson.version>
         <jdom2.version>2.0.6</jdom2.version>
-        <guava.version>31.1-jre</guava.version>
+        <guava.version>32.0.0-jre</guava.version>
         <plexus-utils.version>3.5.1</plexus-utils.version>
         <junit.version>4.13.2</junit.version>
         <commons-io.version>2.11.0</commons-io.version>
